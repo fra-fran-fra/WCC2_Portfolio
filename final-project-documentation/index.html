@@ -30,20 +30,20 @@
     <main class="documentation-page">
         <section>
             <div class="responsive-video centered-content">
-                <iframe title="vimeo-player" src="https://vimeo.com/822436775" width="100%"
-                    height="100%" frameborder="0" allowfullscreen></iframe>
+                <iframe title="vimeo-player" src="https://vimeo.com/822436775" width="100%" height="100%"
+                    frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
         <section>
             <h3>Introduction</h3>
             <p>unNulling is a multi-device complementary multisensory experience. Participants are encouraged to place
-                their electronic devices together with others’ and manipulate audio and visuals generated on the web
-                app.
+                their electronic devices together with others’ and manipulate audio and visuals generated on the web.
                 Upon entering the experience, each device starts producing noise and colours. Users manipulate both, by
                 interacting with three sliders.
                 The noise passes through a web of equalisers in which each device constitutes a node. User inputs are
                 stored and reproduced on other devices in a complementary way, creating a null in the processing chain
-                but bringing the specificity of each device to the fore.
+                thus bringing the specificity of each device to the fore.
+
             </p>
         </section>
         <section>
@@ -51,8 +51,8 @@
 
             <p>Inspired by several papers published on the issue Collective and Networked Sound Practices in Organised
                 Sound, I began imagining an experience driven by multiple user interaction.
-                The seed was planted by Papadomanoloki (2021), who refers to a polyphony of elements in networked sound
-                experiences which include the materiality of the technologies itself.
+                The seed was planted by Papadomanoloki, who refers to a polyphony of elements in networked sound
+                experiences which include the materiality of the technologies itself (2021).
                 Taking advantage of a network of devices, I designed unNulling as an example of media multiplicity, what
                 Bown et al. describe as an array of lights and speakers which are assembled as moving elements of a
                 multiplicitous media design space (2021).
@@ -61,6 +61,7 @@
                 What emerges is not the sound itself, but the specificity of the technologies involved. A polyphony of
                 utterances (Papadomanoloki, 2021), a collective production of interwoven, dissident subjectivities
                 (Guattari, 2005).
+
             </p>
 
             <!-- if you have a full width image try make it not too tall -->
@@ -85,17 +86,18 @@
 
             <p>unNulling relies on Node.js, Express.js and Socket.io to build a server that handles requests coming from
                 each user.
-                In app.js, it is worth noting that each connection to the server is stored in serverNumUsers. Every time
-                this changes, it is sent to sketch.js through io.emit(), in order to keep track of this number on the
-                client-side as well. Other user interaction is handled with socket.broadcast.emit(), to avoid sending
-                changes back the original sender.
+                In app.js, each connection to the server is stored in serverNumUsers. Every time this changes, it is
+                sent to sketch.js through io.emit(), in order to keep track of this number on the client-side as well.
+                Other user interaction is handled with socket.broadcast.emit(), to avoid sending changes back the
+                original sender.
                 In sketch.js, the two main buttons join and stop control the noise, which is processed through a filter
                 in “peaking” mode. Three sliders control the filter frequency, resonance and gain, as well as the rgb
-                values of the canvas. Dragging each slider calls changeFrequency() and changeBackground() for updating
-                graphics and sound on the user device, while also emitting the message that the server-side picks up to
+                values of the screen. Dragging each slider calls changeFrequency() and changeBackground() for updating
+                graphics and sound on the user device, while also emitting the messages that the server-side picks up to
                 notify other users of the changes. These are then processed on the client-side in a complementary way:
                 based on the value received, filter gain values and background rgb values are mirrored, but also scaled
                 down, based on how many users are connected.
+
             </p>
 
             <!-- example of styling for three images, you can write your own styling -->
@@ -127,9 +129,43 @@
         </section>
         <section>
             <h3>Reflection and Future Development</h3>
-            <p>Reflect on how the project went, what went well, what you learnt etc. Based on these reflections,
-                conclude with how you would further develop this project if you were to make another version or how you
-                would further develop your ideas.</p>
+            <p>The project represents a prototype, a work in progress with a deployment architecture functional in all
+                parts but one.
+                The front-end is in place and ready to be implemented. However, immediate further iterations would focus
+                on allowing real-time audio streaming across devices. This would allow the artist to perform live,
+                stream to the network of devices and calibrate actions in response to the user interaction.</p>
+
+            <p>Attempts were also made triggering recorded sounds instead of synthesised ones. Feeding them to the
+                chain of filters would most likely help focus the listening on the uniqueness of each technology.
+                However, a way to synchronise sample playback as each user joins is necessary.</p>
+
+            <p>Although the interface could be implemented, it would not lose the minimalist look it has now.
+                Sliders and buttons could be improved, but they would not be labelled. Users should focus on the agency
+                their touch has on the modification of the soundscape they are immersed in, rather than pay attention to
+                technical aspects such as filter frequency, resonance or gain.
+                To this regard, it is important to say that unNulling was conceived as a listening experience, thus
+                visuals have a secondary role. Nevertheless, with careful consideration, a still minimalist but more
+                engaging graphical output could be designed.</p>
+
+            <p>Constantly logging to the console was extremely important to understand the flow of the requests. Being
+                used to graphics programming, beginner coders might rely on false assumptions, for example that function
+                setup() is the first to be executed. At some point, with some parameters being reset to their default
+                values, it really helped to log out a series of string messages, one from each function. This helped see
+                how values dynamically modified by callback functions were then neutralised by their one-time
+                declaration made in setup().</p>
+
+            <p>Dealing with the server infrastructure was indeed challenging and took away a lot of time. Testing
+                simple lines of code over and over was ultimately resolved performing a hard refresh on the web page, or
+                killing the terminal and restarting it.</p>
+
+            <p>When finally deployed, I realised hosting the project on Glitch was not the most suitable solution for
+                the type of user experience proposed. Anyone with access to the url can join at any time, which becomes
+                a problem for the site-specificity of the installation.
+                However, with each device acting as independent speaker and screen, iteration of the project could focus
+                on pushing the scale of the network of devices to extremes, populating large areas with bigger devices
+                and crowds. This would result in an uncommon site-specificity, but one that would counteract the
+                acousmatic dislocation (Emmerson, 1994) caused by hosting the work online.
+            </p>
         </section>
         <section>
             <h3>References</h3>
